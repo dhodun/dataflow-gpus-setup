@@ -10,7 +10,7 @@ WORKER_ZONE=us-central1-b
 GPU_TYPE=nvidia-tesla-t4
 GPU_COUNT=1
 
-IMAGE=gcr.io/$PROJECT_ID/dataflow-gpu-pytorch
+IMAGE=gcr.io/$PROJECT_ID/dataflow-gpu-pytorch-dl
 
 python3.7 pipeline.py \
   --runner "DataflowRunner" \

@@ -6,10 +6,10 @@ import torch
 from apache_beam.options.pipeline_options import PipelineOptions
 
 
-def check_gpus(gpus_optional=False):
+def check_gpus(element):
     # Make sure we have a GPU available.
+    gpus_optional = False
     gpu_available = torch.cuda.is_available()
-    logging.info(f"GPU devices: {gpu_devices}")
     if not gpu_available:
         if gpus_optional:
             logging.warning("No GPUs found, defaulting to CPU.")
@@ -28,7 +28,7 @@ def run(beam_args):
         (
             pipeline
             | beam.Create([None])
-            | "Check GPU availability" >> beam.Map(check_gpus, gpus_optional=False)
+            | "Check GPU availability" >> beam.Map(check_gpus)
         )
 
 if __name__ == "__main__":

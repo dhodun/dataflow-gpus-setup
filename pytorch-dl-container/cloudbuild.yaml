@@ -1,7 +1,7 @@
 steps:
 - name: gcr.io/cloud-builders/docker
-  args: ['build','.', '-t', 'gcr.io/$PROJECT_ID/dataflow-gpu-pytorch']
-images: ['gcr.io/$PROJECT_ID/dataflow-gpu-pytorch']
+  args: ['build','.', '-t', 'gcr.io/$PROJECT_ID/dataflow-gpu-pytorch-dl']
+images: ['gcr.io/$PROJECT_ID/dataflow-gpu-pytorch-dl']
 options:
     machineType: 'N1_HIGHCPU_32'
 timeout: 660s
