@@ -6,9 +6,8 @@ import torch
 from apache_beam.options.pipeline_options import PipelineOptions
 
 
-def check_gpus(element):
+def check_gpus(element, gpus_optional=False):
     # Make sure we have a GPU available.
-    gpus_optional = False
     gpu_available = torch.cuda.is_available()
     if not gpu_available:
         if gpus_optional:
