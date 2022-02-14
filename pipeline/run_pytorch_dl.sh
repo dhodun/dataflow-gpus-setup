@@ -12,6 +12,9 @@ GPU_COUNT=1
 
 IMAGE=gcr.io/$PROJECT_ID/dataflow-gpu-pytorch-dl
 
+# no_use_multiple_sdk_containers - forces Dataflow to only launch one worker container on each VM
+# as opposed to one worker container per vCPU. This keeps workers from competing for the GPU
+
 python3.7 pipeline.py \
   --runner "DataflowRunner" \
   --project "$PROJECT_ID" \
@@ -19,5 +22,5 @@ python3.7 pipeline.py \
   --region "$REGION" \
   --worker_zone "$WORKER_ZONE" \
   --worker_harness_container_image "$IMAGE" \
-  --experiment "worker_accelerator=type:$GPU_TYPE;count:$GPU_COUNT;install-nvidia-driver" \
+  --experiment "worker_accelerator=type:$GPU_TYPE;count:$GPU_COUNT;install-nvidia-driver;no_use_multiple_sdk_containers" \
   --experiment "use_runner_v2"
